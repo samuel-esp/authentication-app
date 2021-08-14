@@ -33,3 +33,4 @@ build/
 .vscode/
 /src/main/resources/application-dev.properties
 /src/main/java/com/example/authenticationapp/utilities/EmailSingleton.java
+/src/main/resources/application-prod.properties

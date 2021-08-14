@@ -1,0 +1,26 @@
+version: '2'
+services:
+
+  auth-app:
+    container_name: Authentication-App
+    build: . #build running on this project folder
+    ports:
+      - "8080:8080"
+    depends_on:
+      - "db-auth-app"
+
+  db-auth-app:
+    image: postgres
+    container_name: Authentication-App-DB
+    environment:
+      POSTGRES_PASSWORD: password
+      POSTGRES_USER: postgres
+      POSTGRES_DB: authdb
+    volumes:
+      - /var/lib/postgresql/data
+    ports:
+      - "5433:5432"
+
+volumes:
+  authdb:
+    external: true
