@@ -27,7 +27,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(HttpSecurity httpSecurity) throws Exception{
-        httpSecurity.authorizeRequests().antMatchers("/signup-user", "/login-user").permitAll().and().csrf().disable()
+        httpSecurity.authorizeRequests().antMatchers("/signup-user", "/login-user", "/resetPassword", "/user/changePasswordToken/**", "/user/changePasswordWToken/**")
+                .permitAll()
+                .and().csrf().disable()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
                 .logoutSuccessUrl("/logout.done").deleteCookies("JSESSIONID")
                 .invalidateHttpSession(true) ;

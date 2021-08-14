@@ -1,5 +1,6 @@
 package com.example.authenticationapp.services;
 
+import com.example.authenticationapp.entities.PasswordResetToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -39,5 +40,18 @@ public class SecurityServiceImpl implements SecurityService{
          return result;
     }
 
+
+    @Override
+    public String getCurrentLogin() {
+
+        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+
+        if (principal instanceof UserDetails) {
+            return ((UserDetails)principal).getUsername();
+        } else {
+            return principal.toString();
+        }
+
+    }
 
 }
